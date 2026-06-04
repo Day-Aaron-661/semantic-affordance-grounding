@@ -1,1 +1,0 @@
-# semantic-affordance-grounding
