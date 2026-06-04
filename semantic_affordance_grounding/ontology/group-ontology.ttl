@@ -1,0 +1,221 @@
+@prefix cap: <https://hcis.io/ontology/aicapstone/2026/> .
+@prefix g14: <https://hcis.io/ontology/aicapstone/2026/group14/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@base <https://hcis.io/ontology/aicapstone/2026/group14> .
+
+<https://hcis.io/ontology/aicapstone/2026/group14> a owl:Ontology ;
+    owl:imports <https://hcis.io/ontology/aicapstone/2026> .
+
+
+g14:assignedToContainer a owl:ObjectProperty ;
+    rdfs:domain cap:PhysicalObject ;
+    rdfs:range cap:PhysicalObject ;
+    rdfs:label "assigned to container"@en ;
+    rdfs:comment "Relates an object to the specific container it is supposed to be placed into for the task."@en .
+
+g14:OpenableAffordance a owl:Class ;
+    rdfs:subClassOf cap:Affordance ;
+    rdfs:label "openable affordance"@en ;
+    rdfs:comment "An affordance by which an object, such as a drawer or door, can be opened by a robot."@en .
+
+
+cap:GraspableObject a owl:Class ;
+    owl:equivalentClass [ 
+        a owl:Class ;
+        owl:intersectionOf ( 
+            cap:PhysicalObject
+            [ a owl:Restriction ;
+              owl:onProperty cap:hasAffordance ;
+              owl:someValuesFrom cap:GraspingAffordance ]
+        )
+    ] .
+
+
+g14:StackableObject a owl:Class ;
+    rdfs:label "stackable object"@en ;
+    owl:equivalentClass [ 
+        a owl:Class ;
+        owl:intersectionOf ( 
+            cap:PhysicalObject
+            [ a owl:Restriction ;
+              owl:onProperty cap:hasAffordance ;
+              owl:someValuesFrom cap:StackabilityAffordance ]
+        )
+    ] .
+
+
+g14:OpenableObject a owl:Class ;
+    rdfs:label "openable object"@en ;
+    owl:equivalentClass [ 
+        a owl:Class ;
+        owl:intersectionOf ( 
+            cap:PhysicalObject
+            [ a owl:Restriction ;
+              owl:onProperty cap:hasAffordance ;
+              owl:someValuesFrom g14:OpenableAffordance ]
+        )
+    ] .
+
+
+g14:Table a owl:Class ;
+    rdfs:subClassOf cap:PhysicalObject ;
+    rdfs:label "table"@en ;
+    rdfs:comment "A piece of furniture with a flat top and one or more drawers."@en ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty cap:hasAffordance ;
+        owl:someValuesFrom cap:SupportAffordance
+    ] .
+
+g14:Drawer a owl:Class ;
+    rdfs:subClassOf cap:PhysicalObject ;
+    rdfs:label "drawer"@en ;
+    rdfs:comment "A sliding storage compartment within a table."@en ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty cap:hasAffordance ;
+        owl:someValuesFrom cap:ContainmentAffordance
+    ] ,
+    [
+        a owl:Restriction ;
+        owl:onProperty cap:hasAffordance ;
+        owl:someValuesFrom g14:OpenableAffordance
+    ] .
+
+g14:CookieBox a owl:Class ;
+    rdfs:subClassOf cap:PhysicalObject ;
+    rdfs:label "cookie box"@en ;
+    rdfs:comment "A box containing cookies, serving as the target object to be stowed."@en ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty cap:hasAffordance ;
+        owl:someValuesFrom cap:GraspingAffordance
+    ] .
+
+
+g14:role_target a owl:NamedIndividual , cap:TargetObject .
+g14:role_reference a owl:NamedIndividual , cap:ReferenceObject .
+g14:role_collectable a owl:NamedIndividual , cap:CollectableObject .
+g14:role_container a owl:NamedIndividual , cap:ContainerTarget .
+
+
+g14:blueCup01 a owl:NamedIndividual , cap:Cup ;
+    cap:hasTaskRole g14:role_target ;
+    cap:hasColor "blue"^^xsd:string ;
+    cap:hasObjectLabel "blue_cup"^^xsd:string ;
+    cap:hasPoseFrame "world/object_blue_cup"^^xsd:string ;
+    rdfs:label "blue cup 01"@en ;
+    rdfs:comment "The blue cup instance used in the cup-stacking task."@en .
+
+
+g14:pinkCup01 a owl:NamedIndividual , cap:Cup ;
+    cap:hasTaskRole g14:role_target ;
+    cap:hasColor "pink"^^xsd:string ;
+    cap:hasObjectLabel "pink_cup"^^xsd:string ;
+    cap:hasPoseFrame "world/object_pink_cup"^^xsd:string ;
+    rdfs:label "pink cup 01"@en ;
+    rdfs:comment "The pink cup instance used as a reference or second target in stacking."@en .
+
+
+g14:knife01 a owl:NamedIndividual , cap:Knife ;
+    cap:hasTaskRole g14:role_target ;
+    cap:hasColor "silver"^^xsd:string ;
+    cap:hasObjectLabel "cutlery_knife"^^xsd:string ;
+    cap:hasPoseFrame "world/object_knife"^^xsd:string ;
+    rdfs:label "knife 01"@en .
+
+
+g14:fork01 a owl:NamedIndividual , cap:Fork ;
+    cap:hasTaskRole g14:role_target ;
+    cap:hasColor "silver"^^xsd:string ;
+    cap:hasObjectLabel "cutlery_fork"^^xsd:string ;
+    cap:hasPoseFrame "world/object_fork"^^xsd:string ;
+    rdfs:label "fork 01"@en .
+
+
+g14:plate01 a owl:NamedIndividual , cap:Plate ;
+    cap:hasTaskRole g14:role_reference ;
+    cap:hasColor "white"^^xsd:string ;
+    cap:hasObjectLabel "dinner_plate"^^xsd:string ;
+    cap:hasPoseFrame "world/object_plate"^^xsd:string ;
+    rdfs:label "plate 01"@en .
+
+
+g14:block01 a owl:NamedIndividual , cap:ToyBlock ;
+    cap:hasTaskRole g14:role_collectable ;
+    cap:hasColor "yellow"^^xsd:string ;
+    cap:hasObjectLabel "toy_block_01"^^xsd:string ;
+    cap:hasPoseFrame "world/object_block_01"^^xsd:string ;
+    rdfs:label "toy block 01"@en .
+
+
+g14:block02 a owl:NamedIndividual , cap:ToyBlock ;
+    cap:hasTaskRole g14:role_collectable ;
+    cap:hasColor "red"^^xsd:string ;
+    cap:hasObjectLabel "toy_block_02"^^xsd:string ;
+    cap:hasPoseFrame "world/object_block_02"^^xsd:string ;
+    rdfs:label "toy block 02"@en .
+
+
+g14:block03 a owl:NamedIndividual , cap:ToyBlock ;
+    cap:hasTaskRole g14:role_collectable ;
+    cap:hasColor "green"^^xsd:string ;
+    cap:hasObjectLabel "toy_block_03"^^xsd:string ;
+    cap:hasPoseFrame "world/object_block_03"^^xsd:string ;
+    rdfs:label "toy block 03"@en .
+
+
+g14:basket01 a owl:NamedIndividual , cap:Basket ;
+    cap:hasTaskRole g14:role_container ;
+    cap:hasColor "brown"^^xsd:string ;
+    cap:hasObjectLabel "storage_basket"^^xsd:string ;
+    cap:hasPoseFrame "world/object_basket"^^xsd:string ;
+    rdfs:label "basket 01"@en .
+
+
+g14:table01 a owl:NamedIndividual , g14:Table ;
+    rdfs:label "main table 01"@en ;
+    cap:hasTaskRole g14:role_reference ;
+    cap:hasPoseFrame "world/object_table"^^xsd:string .
+
+g14:drawer01 a owl:NamedIndividual , g14:Drawer ;
+    rdfs:label "drawer 01"@en ;
+    cap:hasObjectLabel "drawer_1"^^xsd:string ;
+    cap:hasTaskRole g14:role_container ;
+    cap:hasPoseFrame "world/object_drawer_1"^^xsd:string .
+
+g14:drawer02 a owl:NamedIndividual , g14:Drawer ;
+    rdfs:label "drawer 02"@en ;
+    cap:hasObjectLabel "drawer_2"^^xsd:string ;
+    cap:hasTaskRole g14:role_container ;
+    cap:hasPoseFrame "world/object_drawer_2"^^xsd:string .
+
+g14:drawer03 a owl:NamedIndividual , g14:Drawer ;
+    rdfs:label "drawer 03"@en ;
+    cap:hasObjectLabel "drawer_3"^^xsd:string ;
+    cap:hasTaskRole g14:role_container ;
+    cap:hasPoseFrame "world/object_drawer_3"^^xsd:string .
+
+g14:cookieBox01 a owl:NamedIndividual , g14:CookieBox ;
+    rdfs:label "cookie box 01"@en ;
+    cap:hasObjectLabel "cookie_box_1"^^xsd:string ;
+    cap:hasTaskRole g14:role_target ;
+    cap:hasPoseFrame "world/object_cookie_box_1"^^xsd:string ;
+    g14:assignedToContainer g14:drawer01 .
+
+g14:cookieBox02 a owl:NamedIndividual , g14:CookieBox ;
+    rdfs:label "cookie box 02"@en ;
+    cap:hasObjectLabel "cookie_box_2"^^xsd:string ;
+    cap:hasTaskRole g14:role_target ;
+    cap:hasPoseFrame "world/object_cookie_box_2"^^xsd:string ;
+    g14:assignedToContainer g14:drawer02 .
+
+g14:cookieBox03 a owl:NamedIndividual , g14:CookieBox ;
+    rdfs:label "cookie box 03"@en ;
+    cap:hasObjectLabel "cookie_box_3"^^xsd:string ;
+    cap:hasTaskRole g14:role_target ;
+    cap:hasPoseFrame "world/object_cookie_box_3"^^xsd:string ;
+    g14:assignedToContainer g14:drawer03 .
