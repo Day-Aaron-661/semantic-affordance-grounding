@@ -1,0 +1,12 @@
+Results for queries/graspable_objects.rq
+obj	label	role
+g14:block01	toy_block_01^^xsd:string	g14:role_collectable
+g14:block02	toy_block_02^^xsd:string	g14:role_collectable
+g14:block03	toy_block_03^^xsd:string	g14:role_collectable
+g14:blueCup01	blue_cup^^xsd:string	g14:role_target
+g14:cookieBox01	cookie_box_1^^xsd:string	g14:role_target
+g14:cookieBox02	cookie_box_2^^xsd:string	g14:role_target
+g14:cookieBox03	cookie_box_3^^xsd:string	g14:role_target
+g14:fork01	cutlery_fork^^xsd:string	g14:role_target
+g14:knife01	cutlery_knife^^xsd:string	g14:role_target
+g14:pinkCup01	pink_cup^^xsd:string	g14:role_target
