@@ -109,4 +109,4 @@ Main files:
 - Openable output: `results/openable_objects_output.txt`
 - Stackable output: `results/stackable_objects_output.txt`
 - Screenshots: `results/screenshots/`
-- Report: `report.md`
+- Report: `report.pdf`
