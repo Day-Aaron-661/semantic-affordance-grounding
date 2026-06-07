@@ -1,0 +1,4 @@
+Results for queries/stackable_objects.rq
+obj	label
+g14:pinkCup01	pink_cup^^xsd:string
+g14:blueCup01	blue_cup^^xsd:string

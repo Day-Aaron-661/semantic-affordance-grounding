@@ -1,0 +1,5 @@
+Results for queries/openable_object.rq
+obj	label
+g14:drawer01	drawer_1^^xsd:string
+g14:drawer02	drawer_2^^xsd:string
+g14:drawer03	drawer_3^^xsd:string
